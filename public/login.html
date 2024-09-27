@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Sharing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(https://images.pexels.com/photos/358904/pexels-photo-358904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+            background-color: white;
+        }
+        .login-container h1 {
+            text-align: center;
+            color: black;
+        }
+        .login-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background: #d81b60;
+        }
+        .login-container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #e6dbde;
+            text-decoration: none;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm" action="index.html" method="post">
+            <input type="text" name="username" id="username" placeholder="Username" required>
+            <div class="error" id="usernameError"></div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Password" required maxlength="20">
+            <div class="error" id="passwordError"></div>
+            <button type="submit">Login</button>
+            <a href="signup.html" style="color: #d81b60;">Sign Up</a>
+        </form>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission initially
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var usernameError = document.getElementById('usernameError');
+            var passwordError = document.getElementById('passwordError');
+
+            usernameError.textContent = ''; // Clear previous error messages
+            passwordError.textContent = '';
+
+            // Validate username
+            if (username.length < 3 || username.length > 15) {
+                usernameError.textContent = 'Username must be between 3 and 15 characters long.';
+            } else if (!/^[a-zA-Z0-9]+$/.test(username)) {
+                usernameError.textContent = 'Username can only contain letters and numbers.';
+            }
+
+            // Validate password
+            if (password.length < 8) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+            } else if (!/[A-Z]/.test(password)) {
+                passwordError.textContent = 'Password must contain at least one uppercase letter.';
+            } else if (!/[a-z]/.test(password)) {
+                passwordError.textContent = 'Password must contain at least one lowercase letter.';
+            } else if (!/[0-9]/.test(password)) {
+                passwordError.textContent = 'Password must contain at least one number.';
+            } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                passwordError.textContent = 'Password must contain at least one special character.';
+            }
+
+  
+
+            if (usernameError.textContent === '' && passwordError.textContent === '') {
+                const newTab = window.open('index.html', '_blank');
+                newTab.focus();
+            }
+            
+        });
+    </script>
+</body>
+</html>

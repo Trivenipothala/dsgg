@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Photo Sharing App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+
+  <!-- Favicon -->
+  <!-- <link href="images/icon2.png" rel="icon" /> -->
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Quicksand:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet" />
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Template Stylesheet -->
+  <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg sticky-top py-lg-0 px-4 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+    <a href="index.html" class="navbar-brand p-0">
+      <h1 class="m-0">Photo Sharing</h1>
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse py-4 py-lg-0" id="navbarCollapse">
+      <div class="navbar-nav ms-auto">
+        <a href="index.html" class="nav-item nav-link active text-dark">Upload</a>
+        <a href="photo Viewing.html" class="nav-item nav-link text-dark">View</a>
+        <a href="Profile Management.html" class="nav-item nav-link text-dark">Profile</a>
+        <a href="notifications.html" class="nav-item nav-link text-dark">Notifications</a>
+        <a href="search.html" class="nav-item nav-link text-dark">Search and Explore</a>
+        <a href="settings.html" class="nav-item nav-link text-dark">Settings</a>
+        <a class="nav-item nav-link" style="cursor: pointer;" id="logoutButton">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <nav class="navbar navbar-light bg-light">
+      <a href="#" onclick="showSection('profile')">My Profile</a>
+      <a href="#" onclick="showSection('view-profiles')">View Others' Profiles</a>
+    </nav>
+  </header>
+
+  <main class="container my-4">
+    <!-- Profile Editing Section -->
+    <section id="profile" class="profile active">
+      <h2>My Profile</h2>
+      <form id="profile-form">
+        <div class="file-upload mb-3">
+          <label for="profile-pic">Profile Picture (max 5 MB, JPEG/PNG/GIF):</label>
+          <input type="file" id="profile-pic" name="profile-pic" accept="image/jpeg, image/png, image/gif" onchange="previewImage(event)"  required>
+          <img id="profile-pic-preview" src="default-profile.png" alt="Profile Picture" class="img-thumbnail mt-2">
+          <div id="file-error" class="text-danger"></div>
+        </div>
+        <div class="mb-3">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" class="form-control" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}" title="Enter a valid email address (e.g., example@gmail.com)">
+        </div>
+        <div class="mb-3">
+          <label for="bio">Bio:</label>
+          <textarea id="bio" name="bio" class="form-control" required></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="saveProfile()">Save Changes</button>
+        <div id="confirmation" class="mt-3 text-success"></div>
+      </form>
+    </section>
+
+    <!-- Profile Viewing Section -->
+    <section id="view-profiles" class="profiles">
+      <h2>View Profiles</h2>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <img src="assets/images/test2.jpeg" class="card-img-top" alt="Profile Picture">
+            <div class="card-body">
+              <h5 class="card-title">Jay</h5>
+              <p class="card-text">Email: jay123@gmail.com</p>
+              <p class="card-text">Bio: A short bio about Jay.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <img src="assets/images/test1.jpeg" class="card-img-top" alt="Profile Picture">
+            <div class="card-body">
+              <h5 class="card-title">Virat</h5>
+              <p class="card-text">Email: virat@gmail.com</p>
+              <p class="card-text">Bio: A short bio about Virat.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <img src="assets/images/test3.jpg" class="card-img-top" alt="Profile Picture">
+            <div class="card-body">
+              <h5 class="card-title">Rani</h5>
+              <p class="card-text">Email: rani@gmail.com</p>
+              <p class="card-text">Bio: A brief bio of Rani.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('main > section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    function previewImage(event) {
+      const file = event.target.files[0];
+      const fileError = document.getElementById('file-error');
+      
+      // Clear previous error messages
+      fileError.textContent = '';
+
+      if (!file) return; // No file selected
+
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (!validTypes.includes(file.type)) {
+        fileError.textContent = 'Invalid file type. Please upload a JPEG, PNG, or GIF image.';
+        return;
+      }
+
+      // Validate file size (5 MB limit)
+      const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
+      if (file.size > maxSize) {
+        fileError.textContent = 'File size exceeds 5 MB. Please upload a smaller image.';
+        return;
+      }
+
+      // Preview image if valid
+      var reader = new FileReader();
+      reader.onload = function() {
+        var output = document.getElementById('profile-pic-preview');
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function saveProfile() {
+      // Get form element
+      var form = document.getElementById('profile-form');
+
+      // Check if form is valid
+      if (!form.checkValidity()) {
+        alert('Please fill in all required fields correctly.');
+        form.reportValidity();
+        return;
+      }
+
+      // Get form values
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var bio = document.getElementById('bio').value.trim();
+      var profilePic = document.getElementById('profile-pic-preview').src;
+
+      // Validate name length
+      if (name.length < 3) {
+        alert('Name must be at least 3 characters long.');
+        return;
+      }
+
+      // Validate bio length
+      if (bio.length < 10) {
+        alert('Bio must be at least 10 characters long.');
+        return;
+      }
+
+      // Regular expression for email validation
+      var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address (e.g., example@gmail.com).');
+        return;
+      }
+
+      // If all validations pass, show an alert
+      alert('Profile saved!\nName: ' + name + '\nEmail: ' + email + '\nBio: ' + bio + '\nProfile Picture URL: ' + profilePic);
+    }
+    document.getElementById('logoutButton').addEventListener('click', function() {
+            
+            window.close(); 
+            window.opener.location.href = 'login.html'; 
+        });
+  </script>
+</body>
+
+</html>

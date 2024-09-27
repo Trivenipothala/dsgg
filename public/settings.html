@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Photo Sharing App</title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport" />
+  <meta content="" name="keywords" />
+  <meta content="" name="description" />
+
+  <!-- Favicon -->
+  <!-- <link href="images/icon2.png" rel="icon" /> -->
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Quicksand:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet" />
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+    integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Template Stylesheet -->
+  <link href="style.css" rel="stylesheet" />
+  
+  <style>
+    body {
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+    .container {
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode .container {
+      background-color: #1e1e1e;
+    }
+  </style>
+ 
+</head>
+
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg sticky-top py-lg-0 px-4 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+    <a href="index.html" class="navbar-brand p-0">
+      <h1 class="m-0 recipe">Photo Sharing</h1>
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+    <div class="collapse navbar-collapse py-4 py-lg-0" id="navbarCollapse">
+      <div class="navbar-nav ms-auto">
+        <a href="index.html" class="nav-item nav-link active text-dark">Upload</a>
+        <a href="photo Viewing.html" class="nav-item nav-link text-dark"> View</a>
+        <a href="Profile Management.html" class="nav-item nav-link text-dark">Profile </a>
+        <a href="notifications.html" class="nav-item nav-link text-dark">Notifications</a>
+        <a href="search.html" class="nav-item nav-link text-dark">Search and Explore</a>
+        <a href="settings.html" class="nav-item nav-link text-dark">Settings </a>
+        <a class="nav-item nav-link" style="cursor: pointer;" id="logoutButton">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Settings</h1>
+    <div class="section">
+      <h2>Account Information</h2>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username">
+        <div id="usernameError" class="error" style="display:none;">Username must be at least 3 characters long and can only contain letters and numbers.</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+        <div id="emailError" class="error" style="display:none;">Please enter a valid email address.</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required maxlength="8">
+        <div id="passwordError" class="error" style="display:none;">Password must be 8 characters long, including at least one uppercase letter, one number, and one special character.</div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Notification Preferences</h2>
+      <div class="form-group checkbox-group">
+        <label><input type="checkbox" id="likes" checked> Likes</label>
+        <label><input type="checkbox" id="comments" checked> Comments</label>
+        <label><input type="checkbox" id="followers" checked> New Followers</label>
+      </div>
+    </div>
+    <div class="section">
+      <h2>App Settings</h2>
+      <div class="form-group">
+        <label for="theme">Theme</label>
+        <select id="theme">
+          <option value="light">Light Mode</option>
+          <option value="dark">Dark Mode</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="language">Language</label>
+        <select id="language">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+        </select>
+      </div>
+    </div>
+    <div class="button-group">
+      <button id="saveButton">Save Changes</button>
+      <button id="cancelButton">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script>
+    const body = document.body;
+
+    document.getElementById('theme').addEventListener('change', function() {
+      if (this.value === 'dark') {
+        body.classList.add('dark-mode');
+      } else {
+        body.classList.remove('dark-mode');
+      }
+    });
+
+    document.getElementById('saveButton').addEventListener('click', function() {
+      // Get input values
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      let valid = true;
+
+      // Clear previous error messages
+      document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+
+      // Validate username (must be at least 3 characters, only letters and numbers)
+      const usernamePattern = /^[a-zA-Z0-9]{3,}$/;
+      if (!usernamePattern.test(username)) {
+        document.getElementById('usernameError').style.display = 'block';
+        valid = false;
+      }
+
+      // Validate email
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById('emailError').style.display = 'block';
+        valid = false;
+      }
+
+      // Validate password
+      const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      if (!passwordPattern.test(password)) {
+        document.getElementById('passwordError').style.display = 'block';
+        valid = false;
+      }
+
+      // If form is valid
+      if (valid) {
+        alert('Settings saved successfully!');
+      }
+    });
+
+    document.getElementById('cancelButton').addEventListener('click', function() {
+      // Reset form fields
+      document.getElementById('username').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('password').value = '';
+      document.getElementById('likes').checked = false;
+      document.getElementById('comments').checked = false;
+      document.getElementById('followers').checked = false;
+      document.getElementById('theme').value = 'light'; // Reset to light mode
+      document.getElementById('language').value = 'en';
+
+      // Remove dark mode class if present
+      body.classList.remove('dark-mode');
+    });
+    document.getElementById('logoutButton').addEventListener('click', function() {
+        
+            window.close();
+            window.opener.location.href = 'login.html'; 
+        });
+  </script>
+
+</body>
+</html>

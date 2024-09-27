@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Sharing</title>
+    <style>
+        body {
+            background-image: url(https://images.pexels.com/photos/358904/pexels-photo-358904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .signup-container {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+            background: white; /* Added background for better readability */
+        }
+        .signup-container h1 {
+            text-align: center;
+            color: #e91e63;
+        }
+        .signup-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .signup-container button {
+            width: 100%;
+            padding: 10px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .signup-container button:hover {
+            background: #d81b60;
+        }
+        .signup-container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #e91e63;
+            text-decoration: none;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+        <form id="signupForm" action="login.html" method="post">
+            <input type="text" name="username" id="username" placeholder="Username" required>
+            <div class="error" id="usernameError"></div>
+            <input type="email" name="email" id="email" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="ex:sdd@gmail.com" placeholder="Email" required>
+            <input type="password" name="password" id="password" placeholder="Password" required maxlength="8">
+            <div class="error" id="passwordError"></div>
+            <button type="submit">Sign Up</button>
+            <a href="login.html">Already have an account? Login</a>
+        </form>
+    </div>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var usernameError = document.getElementById('usernameError');
+            var passwordError = document.getElementById('passwordError');
+            usernameError.textContent = '';
+            passwordError.textContent = '';
+
+            // Custom username validation
+            if (username.length < 3 || username.length > 15) {
+                usernameError.textContent = 'Username must be between 3 and 15 characters long.';
+                event.preventDefault(); // Prevent form submission
+            } else if (!/^[a-zA-Z0-9]+$/.test(username)) {
+                usernameError.textContent = 'Username can only contain letters and numbers.';
+                event.preventDefault(); // Prevent form submission
+            }
+
+            // Existing password validation code
+            if (password.length < 8) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+                event.preventDefault();
+            } else if (!/[A-Z]/.test(password)) {
+                passwordError.textContent = 'Password must contain at least one uppercase letter.';
+                event.preventDefault();
+            } else if (!/[a-z]/.test(password)) {
+                passwordError.textContent = 'Password must contain at least one lowercase letter.';
+                event.preventDefault();
+            } else if (!/[0-9]/.test(password)) {
+                passwordError.textContent = 'Password must contain at least one number.';
+                event.preventDefault();
+            } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                passwordError.textContent = 'Password must contain at least one special character.';
+                event.preventDefault();
+            }
+
+            // Redirect logic
+            if (usernameError.textContent === '' && passwordError.textContent === '') {
+                setTimeout(function() {
+                    window.location.href = 'login.html';
+                }, 0);
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
